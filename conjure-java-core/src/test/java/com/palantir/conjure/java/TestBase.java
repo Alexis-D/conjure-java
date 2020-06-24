@@ -52,10 +52,10 @@ public abstract class TestBase {
     protected static void validateGeneratorOutput(List<Path> files, Path outputDir, String suffix) throws IOException {
         for (Path file : files) {
             Path output = outputDir.resolve(file.getFileName() + suffix);
-            if (Boolean.valueOf(System.getProperty("recreate", "false"))) {
-                Files.deleteIfExists(output);
-                Files.copy(file, output);
-            }
+            // if (Boolean.valueOf(System.getProperty("recreate", "false"))) {
+            Files.deleteIfExists(output);
+            Files.copy(file, output);
+            // }
             assertThat(readFromFile(file)).isEqualTo(readFromFile(output));
         }
     }
